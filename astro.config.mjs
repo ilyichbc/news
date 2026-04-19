@@ -31,12 +31,13 @@ import { parseDirectiveNode } from "./src/plugins/remark-directive-rehype.js";
 import { remarkFixGithubAdmonitions } from "./src/plugins/remark-fix-github-admonitions.js";
 import { remarkMermaid } from "./src/plugins/remark-mermaid.js";
 
+import cloudflare from "@astrojs/cloudflare";
+
 // https://astro.build/config
 export default defineConfig({
 	site: siteConfig.siteURL,
 	base: "/",
 	trailingSlash: "always",
-
 	output: "static",
 
 	integrations: [
@@ -122,6 +123,7 @@ export default defineConfig({
 		sitemap(),
 		mdx(),
 	],
+
 	markdown: {
 		remarkPlugins: [
 			remarkMath,
@@ -179,6 +181,7 @@ export default defineConfig({
 			rehypeImageWidth,
 		],
 	},
+
 	vite: {
 		plugins: [tailwindcss()],
 		// 开发环境预打包优化：将常用依赖提前编译，避免首次页面加载时 on-demand 编译导致 8s+ 的等待
@@ -243,4 +246,15 @@ export default defineConfig({
 					: [],
 		},
 	},
+	ssr: {
+		external: ["node:path", "node:fs", "node:url"],
+		noExternal: true,
+	},
+	adapter: cloudflare({
+		wranglerConfigPath: "./wrangler.toml",
+		imageService: "cloudflare", // 强制使用 Cloudflare Images
+		platformProxy: {
+			enabled: true,
+		},
+	}),
 });
