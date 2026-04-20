@@ -26,7 +26,7 @@ const SITE_TIMEZONE = 8; //设置你的网站时区 from -12 to 12 default in UT
 export const siteConfig: SiteConfig = {
 	title: "星籁浮屿资讯站",
 	subtitle: "分享最新资讯",
-	siteURL: "https://ilyich.top/", // 请替换为你的站点URL，以斜杠结尾
+	siteURL: "https://news.luminoa.ilyich.top/", // 请替换为你的站点URL，以斜杠结尾
 	siteStartDate: "2026-04-15", // 站点开始运行日期，用于站点统计组件计算运行天数
 
 	timeZone: SITE_TIMEZONE,
@@ -281,7 +281,7 @@ export const navBarConfig: NavBarConfig = {
 		},
 		{
 			name: "主站",
-			url: "https://ilyich.top/luminoa.github.io",
+			url: "https://luminoa.ilyich.top/",
 			external: true,
 			icon: "fa6-solid:layer-group",
 			// external?: boolean fa fa-university
